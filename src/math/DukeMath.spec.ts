@@ -53,8 +53,22 @@ describe("DukeMath", () => {
         });
     });
 
-    describe("barycentric coordinate of a 2D point in relation to other three non-collinear 2D points", () => {
+    describe("inverse matrix 2d", () => {
+       it("returns '[[3, -1], [-5, 2]]' as the inverse of matrix [[2, 1], [5, 3]]", () => {
+           expect(DukeMath.inverseMatrix2D([[2, 1], [5, 3]])).toEqual([[3, -1], [-5, 2]]);
+       });
+    });
 
+    describe("barycentric coordinate of a 2D point in relation to other three non-collinear 2D points", () => {
+        it("returns '[0.5625, 0.125, 0.3125]' as the barycentric coordinate of P(-0.25, 0.75), " +
+            "in relation to A(-1, 1), B(0, -1) and C(1, 1)", () => {
+            expect(DukeMath.barycentricCoordinate(
+                [-0.25, 0.75],
+                [-1, 1],
+                [0, -1],
+                [1, 1],
+                )).toEqual([0.5625, 0.125, 0.3125]);
+        });
     });
 
     describe("carthesian coordinate of a 2D point from its barycentric coordinate in relation to other three non-collinear 2D points", () => {

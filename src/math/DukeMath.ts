@@ -53,4 +53,42 @@ export class DukeMath {
         const magnitude = this.vectorMagnitude(A);
         return A.map(coordinate => +(coordinate / magnitude).toFixed(5));
     }
+
+    public static barycentricCoordinate(P: number[], A: number[], B: number[], C: number[]): number[] {
+        const mA: number[][] =
+            [
+                [A[0] - C[0], B[0] - C[0]],
+                [A[1] - C[1], B[1] - C[1]]
+            ];
+        const mB: number[][] =
+            [
+                [P[0] - C[0]],
+                [P[1] - C[1]]
+            ];
+
+        const [_alpha, _beta] = this.matrixMultiplication(this.inverseMatrix2D(mA), mB);
+
+        const alpha = _alpha[0];
+        const beta = _beta[0];
+
+        return [alpha, beta, 1 - alpha - beta];
+    }
+
+    public static inverseMatrix2D(matrix: number[][]) {
+        const a: number = matrix[0][0];
+        const b: number = matrix[0][1];
+        const c: number = matrix[1][0];
+        const d: number = matrix[1][1];
+
+        const determinant: number = (a * d) - (b * c);
+        const multiplicant: number = 1/determinant;
+
+        const result: number[][] =
+            [
+                [d * multiplicant, -b * multiplicant],
+                [-c * multiplicant, a * multiplicant]
+            ];
+
+        return result;
+    }
 }
