@@ -24,6 +24,16 @@ export class DukeMath {
         return result;
     }
 
+    public static pointsAddition(A: number[], B: number[]): number[] {
+        let result: number[] = new Array(A.length);
+
+        for(let i = 0; i < A.length; i++){
+            result[i] = A[i] + B[i];
+        }
+
+        return result;
+    }
+
     public static dotProduct(A: number[], B: number[]): number {
         let result: number = 0;
 
@@ -90,5 +100,11 @@ export class DukeMath {
             ];
 
         return result;
+    }
+
+    public static carthesianCoordinates(barycentricCoordinates: number[], A: number[], B: number[], C: number[]): number[] {
+        const [alpha, beta, gama] = barycentricCoordinates;
+
+        return this.pointsAddition(this.pointsAddition([alpha * A[0], alpha * A[1]], [beta * B[0], beta * B[1]]), [gama * C[0], gama * C[1]]);
     }
 }

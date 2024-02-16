@@ -72,6 +72,14 @@ describe("DukeMath", () => {
     });
 
     describe("carthesian coordinate of a 2D point from its barycentric coordinate in relation to other three non-collinear 2D points", () => {
-
+        it("returns '[-0.25, 0.75]' as the carthesian coordinates" +
+            "in relation to A(-1, 1), B(0, -1) and C(1, 1) and the point in which the barycentric coordinates are [0.5625, 0.125, 0.3125]", () => {
+            expect(DukeMath.carthesianCoordinates(
+                [0.5625, 0.125, 0.3125],
+                [-1, 1],
+                [0, -1],
+                [1, 1],
+            )).toEqual([-0.25, 0.75]);
+        });
     });
 });
